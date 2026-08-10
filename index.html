@@ -132,38 +132,126 @@
       letter-spacing: -0.025em;
     }
 
-    .contact-text a {
-      color: inherit;
-    }
+    /* ARTWORK PREVIEW */
 
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(255,255,255,0.98);
+      background: rgba(255,255,255,0.985);
       display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 36px;
       z-index: 100;
-      cursor: zoom-out;
+      overflow-y: auto;
     }
 
     .lightbox.open {
-      display: flex;
+      display: block;
     }
 
-    .lightbox img {
-      max-width: 95vw;
-      max-height: 92vh;
+    .lightbox-inner {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 0.8fr);
+      gap: 70px;
+      align-items: center;
+      padding: 70px;
+    }
+
+    .lightbox-image-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-image-wrap img {
+      display: block;
+      max-width: 100%;
+      max-height: 82vh;
       object-fit: contain;
+    }
+
+    .artwork-details {
+      max-width: 360px;
+    }
+
+    .detail-title {
+      margin: 0 0 34px;
+      font-size: 28px;
+      line-height: 1.05;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+    }
+
+    .detail-list {
+      margin: 0;
+      padding: 0;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 18px;
+      padding: 11px 0;
+      border-top: 1px solid #e8e8e8;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .detail-row:last-child {
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .detail-label {
+      color: #777;
+    }
+
+    .detail-value {
+      color: #111;
+    }
+
+    .detail-row.hidden {
+      display: none;
+    }
+
+    .inquire {
+      display: inline-block;
+      margin-top: 34px;
+      color: #111;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
 
     .close {
       position: fixed;
-      top: 18px;
-      right: 24px;
-      font-size: 30px;
+      top: 20px;
+      right: 26px;
+      z-index: 110;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 34px;
       font-weight: 300;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    @media (max-width: 800px) {
+      .lightbox-inner {
+        grid-template-columns: 1fr;
+        gap: 38px;
+        align-items: start;
+        padding: 70px 20px 50px;
+      }
+
+      .lightbox-image-wrap img {
+        max-height: none;
+      }
+
+      .artwork-details {
+        max-width: none;
+      }
     }
 
     @media (max-width: 700px) {
@@ -230,87 +318,234 @@
   <main id="work">
     <div class="gallery">
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/large-press-1.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/large-press-1.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/img-8713.jpg" alt="Wood burned botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/img-8713.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/primary-colors.jpg" alt="Mixed media artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title="Primary Colors"
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/primary-colors.jpg" alt="Primary Colors by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/med-press-1.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/med-press-1.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/img-8703.jpg" alt="Wood burned artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/img-8703.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/small-1.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/small-1.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/lanscape.jpg" alt="Landscape artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/lanscape.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/mini-press-1.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/mini-press-1.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/img-8714.jpg" alt="Wood burned artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/img-8714.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/flower-press.jpg" alt="Pressed flower artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/flower-press.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
         <img src="paigewilson-web-images/img-8708.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/small-2.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/small-2.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/med-press-2.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/med-press-2.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
         <img src="paigewilson-web-images/img-8715.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/mini-press-2.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/mini-press-2.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/small-3.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/small-3.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
         <img src="paigewilson-web-images/img-8716.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
-        <img src="paigewilson-web-images/flower-press-large.jpg" alt="Pressed flower artwork by Paige Wilson">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
+        <img src="paigewilson-web-images/flower-press-large.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
         <img src="paigewilson-web-images/img-6849.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
         <img src="paigewilson-web-images/img-8717.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
-      <figure class="artwork">
+      <figure
+        class="artwork"
+        data-title=""
+        data-medium=""
+        data-size=""
+        data-year=""
+        data-price=""
+        data-status="">
         <img src="paigewilson-web-images/66499936642-28dea00c-9c9f-4381-83de-ac20cf505587.jpg" alt="Artwork by Paige Wilson">
       </figure>
 
@@ -336,30 +571,126 @@
   </section>
 
   <div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <img id="lightbox-image" src="" alt="">
+    <button class="close" id="close-lightbox" aria-label="Close">&times;</button>
+
+    <div class="lightbox-inner">
+
+      <div class="lightbox-image-wrap">
+        <img id="lightbox-image" src="" alt="">
+      </div>
+
+      <aside class="artwork-details">
+
+        <h2 class="detail-title" id="detail-title"></h2>
+
+        <div class="detail-list">
+
+          <div class="detail-row" id="medium-row">
+            <div class="detail-label">Medium</div>
+            <div class="detail-value" id="detail-medium"></div>
+          </div>
+
+          <div class="detail-row" id="size-row">
+            <div class="detail-label">Size</div>
+            <div class="detail-value" id="detail-size"></div>
+          </div>
+
+          <div class="detail-row" id="year-row">
+            <div class="detail-label">Year</div>
+            <div class="detail-value" id="detail-year"></div>
+          </div>
+
+          <div class="detail-row" id="price-row">
+            <div class="detail-label">Price</div>
+            <div class="detail-value" id="detail-price"></div>
+          </div>
+
+          <div class="detail-row" id="status-row">
+            <div class="detail-label">Status</div>
+            <div class="detail-value" id="detail-status"></div>
+          </div>
+
+        </div>
+
+        <a class="inquire" href="#contact">Inquire about this piece</a>
+
+      </aside>
+
+    </div>
   </div>
 
   <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
-    const artworks = document.querySelectorAll('.artwork img');
+    const closeLightbox = document.getElementById('close-lightbox');
 
-    artworks.forEach(image => {
-      image.addEventListener('click', () => {
+    const detailTitle = document.getElementById('detail-title');
+    const detailMedium = document.getElementById('detail-medium');
+    const detailSize = document.getElementById('detail-size');
+    const detailYear = document.getElementById('detail-year');
+    const detailPrice = document.getElementById('detail-price');
+    const detailStatus = document.getElementById('detail-status');
+
+    const artworks = document.querySelectorAll('.artwork');
+
+    function setDetail(rowId, valueId, value) {
+      const row = document.getElementById(rowId);
+      const field = document.getElementById(valueId);
+
+      field.textContent = value;
+
+      if (value && value.trim() !== '') {
+        row.classList.remove('hidden');
+      } else {
+        row.classList.add('hidden');
+      }
+    }
+
+    artworks.forEach(artwork => {
+      const image = artwork.querySelector('img');
+
+      artwork.addEventListener('click', () => {
+
         lightboxImage.src = image.src;
         lightboxImage.alt = image.alt;
+
+        const title = artwork.dataset.title || '';
+        const medium = artwork.dataset.medium || '';
+        const size = artwork.dataset.size || '';
+        const year = artwork.dataset.year || '';
+        const price = artwork.dataset.price || '';
+        const status = artwork.dataset.status || '';
+
+        detailTitle.textContent = title;
+        detailTitle.style.display = title ? 'block' : 'none';
+
+        setDetail('medium-row', 'detail-medium', medium);
+        setDetail('size-row', 'detail-size', size);
+        setDetail('year-row', 'detail-year', year);
+        setDetail('price-row', 'detail-price', price);
+        setDetail('status-row', 'detail-status', status);
+
         lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
       });
     });
 
-    lightbox.addEventListener('click', () => {
+    function closePreview() {
       lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    closeLightbox.addEventListener('click', closePreview);
+
+    lightbox.addEventListener('click', event => {
+      if (event.target === lightbox) {
+        closePreview();
+      }
     });
 
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') {
-        lightbox.classList.remove('open');
+        closePreview();
       }
     });
   </script>
