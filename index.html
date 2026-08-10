@@ -17,84 +17,72 @@
 
     body {
       margin: 0;
-      background: #fff;
-      color: #111;
+      background: #ffffff;
+      color: #111111;
       font-family: Arial, Helvetica, sans-serif;
     }
-
-    /* HEADER */
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 28px;
-      position: relative;
+      padding: 24px 30px;
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
       z-index: 10;
-      background: white;
     }
 
     .name {
-      color: #111;
+      color: inherit;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       letter-spacing: 0.02em;
     }
 
     nav {
       display: flex;
-      gap: 28px;
+      gap: 26px;
     }
 
     nav a {
-      color: #111;
+      color: inherit;
       text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.06em;
+      font-size: 11px;
+      letter-spacing: 0.08em;
     }
 
     nav a:hover {
       opacity: 0.5;
     }
 
-    /* INTRO */
-
     .intro {
-      padding: 80px 28px 110px;
-      max-width: 900px;
-    }
-
-    .intro h1 {
-      margin: 0;
-      font-size: clamp(38px, 7vw, 90px);
-      line-height: 0.95;
-      font-weight: 400;
-      letter-spacing: -0.045em;
+      padding: 60px 30px 90px;
     }
 
     .intro p {
-      margin: 22px 0 0;
+      margin: 0;
+      max-width: 520px;
       font-size: 14px;
-      letter-spacing: 0.04em;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
     }
 
-    /* GALLERY */
-
     #work {
-      padding: 0 28px 120px;
+      padding: 0 30px 140px;
     }
 
     .gallery {
-      columns: 3;
-      column-gap: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 90px 42px;
+      align-items: start;
     }
 
     .artwork {
-      display: block;
-      width: 100%;
-      margin: 0 0 24px;
-      break-inside: avoid;
+      margin: 0;
       cursor: zoom-in;
     }
 
@@ -104,60 +92,58 @@
       height: auto;
     }
 
-    .artwork:hover img {
-      opacity: 0.92;
+    .artwork:nth-child(4n + 2),
+    .artwork:nth-child(4n + 3) {
+      width: 84%;
     }
 
-    /* ABOUT */
+    .artwork:nth-child(4n + 2) {
+      justify-self: end;
+    }
 
-    .about {
-      padding: 120px 28px;
+    .artwork:nth-child(4n + 3) {
+      justify-self: start;
+    }
+
+    .artwork:hover img {
+      opacity: 0.94;
+    }
+
+    .about,
+    .contact {
+      border-top: 1px solid #eeeeee;
+      padding: 110px 30px;
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 50px;
-      border-top: 1px solid #eee;
     }
 
     .section-label {
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .about-text {
-      max-width: 700px;
-      font-size: clamp(22px, 3vw, 42px);
+    .about-text,
+    .contact-text {
+      max-width: 720px;
+      font-size: clamp(24px, 3vw, 40px);
       line-height: 1.15;
       letter-spacing: -0.025em;
     }
 
-    /* CONTACT */
-
-    .contact {
-      padding: 120px 28px;
-      border-top: 1px solid #eee;
-    }
-
-    .contact p {
-      font-size: clamp(28px, 5vw, 64px);
-      margin: 30px 0 0;
-      letter-spacing: -0.035em;
-    }
-
-    .contact a {
+    .contact-text a {
       color: inherit;
     }
-
-    /* LIGHTBOX */
 
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255,255,255,0.98);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 40px;
+      padding: 36px;
       z-index: 100;
       cursor: zoom-out;
     }
@@ -174,22 +160,13 @@
 
     .close {
       position: fixed;
-      top: 20px;
-      right: 25px;
-      font-size: 28px;
+      top: 18px;
+      right: 24px;
+      font-size: 30px;
       font-weight: 300;
-      cursor: pointer;
     }
 
-    /* MOBILE */
-
-    @media (max-width: 950px) {
-      .gallery {
-        columns: 2;
-      }
-    }
-
-    @media (max-width: 650px) {
+    @media (max-width: 700px) {
       header {
         padding: 20px 16px;
       }
@@ -203,29 +180,29 @@
       }
 
       .intro {
-        padding: 65px 16px 85px;
+        padding: 45px 16px 65px;
       }
 
       #work {
-        padding: 0 16px 80px;
+        padding: 0 16px 90px;
       }
 
       .gallery {
-        columns: 1;
-      }
-
-      .artwork {
-        margin-bottom: 16px;
-      }
-
-      .about {
-        padding: 80px 16px;
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 44px;
       }
 
+      .artwork,
+      .artwork:nth-child(4n + 2),
+      .artwork:nth-child(4n + 3) {
+        width: 100%;
+      }
+
+      .about,
       .contact {
         padding: 80px 16px;
+        grid-template-columns: 1fr;
+        gap: 28px;
       }
     }
   </style>
@@ -244,96 +221,98 @@
   </header>
 
   <section class="intro">
-    <h1>Paige Wilson</h1>
-    <p>ARTIST</p>
+    <p>
+      Artist working across botanical art, wood burning, painting,
+      assemblage and mixed media.
+    </p>
   </section>
 
   <main id="work">
     <div class="gallery">
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/large-press-1.jpg" alt="Pressed botanical artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/large-press-1.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/img-8713.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/img-8713.jpg" alt="Wood burned botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/primary-colors.jpg" alt="Primary Colors artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/primary-colors.jpg" alt="Mixed media artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/med-press-1.jpg" alt="Pressed botanical artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/med-press-1.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/img-8703.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/img-8703.jpg" alt="Wood burned artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/small-1.jpg" alt="Botanical artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/small-1.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/lanscape.jpg" alt="Landscape artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/lanscape.jpg" alt="Landscape artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/mini-press-1.jpg" alt="Pressed botanical artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/mini-press-1.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/img-8714.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/img-8714.jpg" alt="Wood burned artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/flower-press.jpg" alt="Pressed flower artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/flower-press.jpg" alt="Pressed flower artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
+      <figure class="artwork">
         <img src="paigewilson-web-images/img-8708.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/small-2.jpg" alt="Botanical artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/small-2.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/med-press-2.jpg" alt="Pressed botanical artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/med-press-2.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
+      <figure class="artwork">
         <img src="paigewilson-web-images/img-8715.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/mini-press-2.jpg" alt="Pressed botanical artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/mini-press-2.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/small-3.jpg" alt="Botanical artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/small-3.jpg" alt="Pressed botanical artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
+      <figure class="artwork">
         <img src="paigewilson-web-images/img-8716.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      </figure>
 
-      <div class="artwork">
-        <img src="paigewilson-web-images/flower-press-large.jpg" alt="Pressed flower artwork">
-      </div>
+      <figure class="artwork">
+        <img src="paigewilson-web-images/flower-press-large.jpg" alt="Pressed flower artwork by Paige Wilson">
+      </figure>
 
-      <div class="artwork">
+      <figure class="artwork">
         <img src="paigewilson-web-images/img-6849.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      </figure>
 
-      <div class="artwork">
+      <figure class="artwork">
         <img src="paigewilson-web-images/img-8717.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      </figure>
 
-      <div class="artwork">
+      <figure class="artwork">
         <img src="paigewilson-web-images/66499936642-28dea00c-9c9f-4381-83de-ac20cf505587.jpg" alt="Artwork by Paige Wilson">
-      </div>
+      </figure>
 
     </div>
   </main>
@@ -342,18 +321,18 @@
     <div class="section-label">About</div>
 
     <div class="about-text">
-      Paige Wilson is a multidisciplinary artist working across painting,
-      botanical art, wood burning, assemblage, and mixed media.
+      Paige Wilson is a multidisciplinary artist exploring color,
+      pattern, nature, memory and handmade process across a range
+      of materials.
     </div>
   </section>
 
   <section class="contact" id="contact">
     <div class="section-label">Contact</div>
 
-    <p>
-      Available work, commissions<br>
-      &amp; inquiries
-    </p>
+    <div class="contact-text">
+      Available work, commissions and inquiries.
+    </div>
   </section>
 
   <div class="lightbox" id="lightbox">
