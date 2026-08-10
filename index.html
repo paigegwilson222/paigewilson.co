@@ -22,44 +22,75 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
+    /* =========================
+       HEADER
+    ========================== */
+
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 30px;
       position: sticky;
       top: 0;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(8px);
-      z-index: 10;
+      z-index: 20;
+      display: flex;
+      align-items: stretch;
+      background: #ffffff;
+      border-bottom: 3px solid #111;
     }
 
-    .name {
-      color: inherit;
+    .brand {
+      display: flex;
+      align-items: center;
+      padding: 16px 24px;
+      border-right: 3px solid #111;
+      color: #111;
       text-decoration: none;
       font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
     }
 
-    nav {
+    .category-nav {
       display: flex;
-      gap: 26px;
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
-    nav a {
-      color: inherit;
-      text-decoration: none;
+    .category-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-button {
+      appearance: none;
+      border: 0;
+      border-right: 3px solid #111;
+      background: #fff;
+      color: #111;
+      padding: 16px 20px;
+      font: inherit;
       font-size: 11px;
-      letter-spacing: 0.08em;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
-    nav a:hover {
-      opacity: 0.5;
+    .filter-button:hover {
+      background: #f2f2f2;
     }
+
+    .filter-button.active {
+      background: #111;
+      color: #fff;
+    }
+
+    /* =========================
+       INTRO
+    ========================== */
 
     .intro {
-      padding: 60px 30px 90px;
+      padding: 55px 30px 85px;
     }
 
     .intro p {
@@ -67,8 +98,11 @@
       max-width: 520px;
       font-size: 14px;
       line-height: 1.5;
-      letter-spacing: 0.01em;
     }
+
+    /* =========================
+       GALLERY
+    ========================== */
 
     #work {
       padding: 0 30px 140px;
@@ -84,6 +118,10 @@
     .artwork {
       margin: 0;
       cursor: zoom-in;
+    }
+
+    .artwork.hidden {
+      display: none;
     }
 
     .artwork img {
@@ -109,10 +147,14 @@
       opacity: 0.94;
     }
 
+    /* =========================
+       ABOUT + CONTACT
+    ========================== */
+
     .about,
     .contact {
-      border-top: 1px solid #eeeeee;
-      padding: 110px 30px;
+      border-top: 3px solid #111;
+      padding: 100px 30px;
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 50px;
@@ -120,6 +162,7 @@
 
     .section-label {
       font-size: 11px;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -132,14 +175,16 @@
       letter-spacing: -0.025em;
     }
 
-    /* ARTWORK PREVIEW */
+    /* =========================
+       ARTWORK PREVIEW
+    ========================== */
 
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(255,255,255,0.985);
-      display: none;
       z-index: 100;
+      display: none;
+      background: rgba(255,255,255,0.985);
       overflow-y: auto;
     }
 
@@ -158,8 +203,8 @@
 
     .lightbox-image-wrap {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
     .lightbox-image-wrap img {
@@ -191,13 +236,13 @@
       grid-template-columns: 90px 1fr;
       gap: 18px;
       padding: 11px 0;
-      border-top: 1px solid #e8e8e8;
+      border-top: 1px solid #ddd;
       font-size: 13px;
       line-height: 1.45;
     }
 
     .detail-row:last-child {
-      border-bottom: 1px solid #e8e8e8;
+      border-bottom: 1px solid #ddd;
     }
 
     .detail-label {
@@ -217,6 +262,7 @@
       margin-top: 34px;
       color: #111;
       font-size: 12px;
+      font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: underline;
@@ -237,16 +283,29 @@
       line-height: 1;
     }
 
-    @media (max-width: 800px) {
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 900px) {
+      header {
+        display: block;
+      }
+
+      .brand {
+        border-right: 0;
+        border-bottom: 3px solid #111;
+      }
+
+      .category-nav {
+        width: 100%;
+      }
+
       .lightbox-inner {
         grid-template-columns: 1fr;
         gap: 38px;
         align-items: start;
         padding: 70px 20px 50px;
-      }
-
-      .lightbox-image-wrap img {
-        max-height: none;
       }
 
       .artwork-details {
@@ -255,15 +314,12 @@
     }
 
     @media (max-width: 700px) {
-      header {
-        padding: 20px 16px;
+      .brand {
+        padding: 15px 16px;
       }
 
-      nav {
-        gap: 14px;
-      }
-
-      nav a {
+      .filter-button {
+        padding: 14px 16px;
         font-size: 10px;
       }
 
@@ -288,7 +344,7 @@
 
       .about,
       .contact {
-        padding: 80px 16px;
+        padding: 75px 16px;
         grid-template-columns: 1fr;
         gap: 28px;
       }
@@ -299,400 +355,755 @@
 <body>
 
   <header>
-    <a class="name" href="#">PAIGE WILSON</a>
 
-    <nav>
-      <a href="#work">WORK</a>
-      <a href="#about">ABOUT</a>
-      <a href="#contact">CONTACT</a>
+    <a class="brand" href="#">
+      PAIGE WILSON
+    </a>
+
+    <nav class="category-nav">
+
+      <button class="filter-button active" data-filter="all">
+        All Work
+      </button>
+
+      <button class="filter-button" data-filter="botanical-art">
+        Botanical Art
+      </button>
+
+      <button class="filter-button" data-filter="pyrography">
+        Pyrography
+      </button>
+
+      <button class="filter-button" data-filter="pattern-design">
+        Pattern Design
+      </button>
+
+      <button class="filter-button" data-filter="illustration">
+        Illustration
+      </button>
+
+      <button class="filter-button" data-filter="painting">
+        Painting
+      </button>
+
+      <button class="filter-button" data-filter="collage">
+        Collage
+      </button>
+
+      <button class="filter-button" data-filter="misc">
+        Misc.
+      </button>
+
     </nav>
+
   </header>
+
 
   <section class="intro">
     <p>
-      Artist working across botanical art, wood burning, painting,
-      assemblage and mixed media.
+      Multidisciplinary artist working across botanical art,
+      pyrography, pattern, illustration, painting, collage and
+      mixed media.
     </p>
   </section>
 
+
   <main id="work">
+
     <div class="gallery">
 
+      <!--
+        TEMPORARY ARTWORK.
+        We will replace these with your new definitive photos.
+      -->
+
+
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/large-press-1.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/large-press-1.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="pyrography"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/img-8713.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/img-8713.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="misc"
         data-title="Primary Colors"
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/primary-colors.jpg" alt="Primary Colors by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/primary-colors.jpg"
+          alt="Primary Colors by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/med-press-1.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/med-press-1.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="pyrography"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/img-8703.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/img-8703.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/small-1.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/small-1.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="painting"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/lanscape.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/lanscape.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/mini-press-1.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/mini-press-1.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="pyrography"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/img-8714.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/img-8714.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/flower-press.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/flower-press.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="illustration"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/img-8708.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/img-8708.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/small-2.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/small-2.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/med-press-2.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/med-press-2.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="pyrography"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/img-8715.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/img-8715.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/mini-press-2.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/mini-press-2.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/small-3.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/small-3.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="pyrography"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/img-8716.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/img-8716.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="botanical-art"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/flower-press-large.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/flower-press-large.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="illustration"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/img-6849.jpg" alt="Artwork by Paige Wilson">
+
+        <img
+          src="paigewilson-web-images/img-6849.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
+
 
       <figure
         class="artwork"
+        data-category="pyrography"
         data-title=""
         data-medium=""
         data-size=""
         data-year=""
         data-price=""
         data-status="">
-        <img src="paigewilson-web-images/img-8717.jpg" alt="Artwork by Paige Wilson">
-      </figure>
 
-      <figure
-        class="artwork"
-        data-title=""
-        data-medium=""
-        data-size=""
-        data-year=""
-        data-price=""
-        data-status="">
-        <img src="paigewilson-web-images/66499936642-28dea00c-9c9f-4381-83de-ac20cf505587.jpg" alt="Artwork by Paige Wilson">
+        <img
+          src="paigewilson-web-images/img-8717.jpg"
+          alt="Artwork by Paige Wilson">
       </figure>
 
     </div>
+
   </main>
 
+
   <section class="about" id="about">
-    <div class="section-label">About</div>
+
+    <div class="section-label">
+      About
+    </div>
 
     <div class="about-text">
       Paige Wilson is a multidisciplinary artist exploring color,
       pattern, nature, memory and handmade process across a range
       of materials.
     </div>
+
   </section>
 
+
   <section class="contact" id="contact">
-    <div class="section-label">Contact</div>
+
+    <div class="section-label">
+      Contact
+    </div>
 
     <div class="contact-text">
       Available work, commissions and inquiries.
     </div>
+
   </section>
 
+
+  <!-- ARTWORK DETAIL PREVIEW -->
+
   <div class="lightbox" id="lightbox">
-    <button class="close" id="close-lightbox" aria-label="Close">&times;</button>
+
+    <button
+      class="close"
+      id="close-lightbox"
+      aria-label="Close">
+      &times;
+    </button>
 
     <div class="lightbox-inner">
 
       <div class="lightbox-image-wrap">
-        <img id="lightbox-image" src="" alt="">
+
+        <img
+          id="lightbox-image"
+          src=""
+          alt="">
+
       </div>
 
       <aside class="artwork-details">
 
-        <h2 class="detail-title" id="detail-title"></h2>
+        <h2
+          class="detail-title"
+          id="detail-title">
+        </h2>
 
         <div class="detail-list">
 
-          <div class="detail-row" id="medium-row">
-            <div class="detail-label">Medium</div>
-            <div class="detail-value" id="detail-medium"></div>
+          <div
+            class="detail-row"
+            id="medium-row">
+
+            <div class="detail-label">
+              Medium
+            </div>
+
+            <div
+              class="detail-value"
+              id="detail-medium">
+            </div>
+
           </div>
 
-          <div class="detail-row" id="size-row">
-            <div class="detail-label">Size</div>
-            <div class="detail-value" id="detail-size"></div>
+
+          <div
+            class="detail-row"
+            id="size-row">
+
+            <div class="detail-label">
+              Size
+            </div>
+
+            <div
+              class="detail-value"
+              id="detail-size">
+            </div>
+
           </div>
 
-          <div class="detail-row" id="year-row">
-            <div class="detail-label">Year</div>
-            <div class="detail-value" id="detail-year"></div>
+
+          <div
+            class="detail-row"
+            id="year-row">
+
+            <div class="detail-label">
+              Year
+            </div>
+
+            <div
+              class="detail-value"
+              id="detail-year">
+            </div>
+
           </div>
 
-          <div class="detail-row" id="price-row">
-            <div class="detail-label">Price</div>
-            <div class="detail-value" id="detail-price"></div>
+
+          <div
+            class="detail-row"
+            id="price-row">
+
+            <div class="detail-label">
+              Price
+            </div>
+
+            <div
+              class="detail-value"
+              id="detail-price">
+            </div>
+
           </div>
 
-          <div class="detail-row" id="status-row">
-            <div class="detail-label">Status</div>
-            <div class="detail-value" id="detail-status"></div>
+
+          <div
+            class="detail-row"
+            id="status-row">
+
+            <div class="detail-label">
+              Status
+            </div>
+
+            <div
+              class="detail-value"
+              id="detail-status">
+            </div>
+
           </div>
 
         </div>
 
-        <a class="inquire" href="#contact">Inquire about this piece</a>
+        <a
+          class="inquire"
+          href="#contact">
+          Inquire about this piece
+        </a>
 
       </aside>
 
     </div>
+
   </div>
 
+
   <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const closeLightbox = document.getElementById('close-lightbox');
 
-    const detailTitle = document.getElementById('detail-title');
-    const detailMedium = document.getElementById('detail-medium');
-    const detailSize = document.getElementById('detail-size');
-    const detailYear = document.getElementById('detail-year');
-    const detailPrice = document.getElementById('detail-price');
-    const detailStatus = document.getElementById('detail-status');
+    /* =========================
+       CATEGORY FILTERING
+    ========================== */
 
-    const artworks = document.querySelectorAll('.artwork');
+    const filterButtons =
+      document.querySelectorAll('.filter-button');
+
+    const artworkItems =
+      document.querySelectorAll('.artwork');
+
+
+    filterButtons.forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        const selectedFilter =
+          button.dataset.filter;
+
+
+        filterButtons.forEach(item => {
+          item.classList.remove('active');
+        });
+
+
+        button.classList.add('active');
+
+
+        artworkItems.forEach(artwork => {
+
+          const artworkCategory =
+            artwork.dataset.category;
+
+
+          if (
+            selectedFilter === 'all' ||
+            artworkCategory === selectedFilter
+          ) {
+            artwork.classList.remove('hidden');
+          }
+
+          else {
+            artwork.classList.add('hidden');
+          }
+
+        });
+
+      });
+
+    });
+
+
+    /* =========================
+       ARTWORK PREVIEW
+    ========================== */
+
+    const lightbox =
+      document.getElementById('lightbox');
+
+    const lightboxImage =
+      document.getElementById('lightbox-image');
+
+    const closeLightbox =
+      document.getElementById('close-lightbox');
+
+    const detailTitle =
+      document.getElementById('detail-title');
+
 
     function setDetail(rowId, valueId, value) {
-      const row = document.getElementById(rowId);
-      const field = document.getElementById(valueId);
+
+      const row =
+        document.getElementById(rowId);
+
+      const field =
+        document.getElementById(valueId);
+
 
       field.textContent = value;
 
+
       if (value && value.trim() !== '') {
         row.classList.remove('hidden');
-      } else {
+      }
+
+      else {
         row.classList.add('hidden');
       }
+
     }
 
-    artworks.forEach(artwork => {
-      const image = artwork.querySelector('img');
+
+    artworkItems.forEach(artwork => {
+
+      const image =
+        artwork.querySelector('img');
+
 
       artwork.addEventListener('click', () => {
 
         lightboxImage.src = image.src;
         lightboxImage.alt = image.alt;
 
-        const title = artwork.dataset.title || '';
-        const medium = artwork.dataset.medium || '';
-        const size = artwork.dataset.size || '';
-        const year = artwork.dataset.year || '';
-        const price = artwork.dataset.price || '';
-        const status = artwork.dataset.status || '';
+
+        const title =
+          artwork.dataset.title || '';
+
+        const medium =
+          artwork.dataset.medium || '';
+
+        const size =
+          artwork.dataset.size || '';
+
+        const year =
+          artwork.dataset.year || '';
+
+        const price =
+          artwork.dataset.price || '';
+
+        const status =
+          artwork.dataset.status || '';
+
 
         detailTitle.textContent = title;
-        detailTitle.style.display = title ? 'block' : 'none';
 
-        setDetail('medium-row', 'detail-medium', medium);
-        setDetail('size-row', 'detail-size', size);
-        setDetail('year-row', 'detail-year', year);
-        setDetail('price-row', 'detail-price', price);
-        setDetail('status-row', 'detail-status', status);
+        detailTitle.style.display =
+          title ? 'block' : 'none';
+
+
+        setDetail(
+          'medium-row',
+          'detail-medium',
+          medium
+        );
+
+        setDetail(
+          'size-row',
+          'detail-size',
+          size
+        );
+
+        setDetail(
+          'year-row',
+          'detail-year',
+          year
+        );
+
+        setDetail(
+          'price-row',
+          'detail-price',
+          price
+        );
+
+        setDetail(
+          'status-row',
+          'detail-status',
+          status
+        );
+
 
         lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden';
+
+        document.body.style.overflow =
+          'hidden';
+
       });
+
     });
+
 
     function closePreview() {
+
       lightbox.classList.remove('open');
+
       document.body.style.overflow = '';
+
     }
 
-    closeLightbox.addEventListener('click', closePreview);
 
-    lightbox.addEventListener('click', event => {
-      if (event.target === lightbox) {
-        closePreview();
-      }
-    });
+    closeLightbox.addEventListener(
+      'click',
+      closePreview
+    );
 
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') {
-        closePreview();
+
+    lightbox.addEventListener(
+      'click',
+      event => {
+
+        if (event.target === lightbox) {
+          closePreview();
+        }
+
       }
-    });
+    );
+
+
+    document.addEventListener(
+      'keydown',
+      event => {
+
+        if (event.key === 'Escape') {
+          closePreview();
+        }
+
+      }
+    );
+
   </script>
 
 </body>
