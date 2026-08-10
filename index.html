@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Paige Wilson</title>
+  <title>Paige Wilson — Artist</title>
 
   <style>
     * {
@@ -17,8 +17,8 @@
 
     body {
       margin: 0;
-      background: #ffffff;
-      color: #111111;
+      background: #fff;
+      color: #111;
       font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -28,15 +28,18 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 32px;
+      padding: 24px 28px;
+      position: relative;
+      z-index: 10;
+      background: white;
     }
 
     .name {
+      color: #111;
+      text-decoration: none;
       font-size: 16px;
       font-weight: 600;
       letter-spacing: 0.02em;
-      text-decoration: none;
-      color: inherit;
     }
 
     nav {
@@ -45,74 +48,184 @@
     }
 
     nav a {
-      color: inherit;
+      color: #111;
       text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.04em;
+      font-size: 12px;
+      letter-spacing: 0.06em;
     }
 
     nav a:hover {
       opacity: 0.5;
     }
 
-    /* PORTFOLIO */
+    /* INTRO */
 
-    main {
-      padding: 55px 32px 100px;
+    .intro {
+      padding: 80px 28px 110px;
+      max-width: 900px;
+    }
+
+    .intro h1 {
+      margin: 0;
+      font-size: clamp(38px, 7vw, 90px);
+      line-height: 0.95;
+      font-weight: 400;
+      letter-spacing: -0.045em;
+    }
+
+    .intro p {
+      margin: 22px 0 0;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    /* GALLERY */
+
+    #work {
+      padding: 0 28px 120px;
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 90px 32px;
-      max-width: 1500px;
-      margin: 0 auto;
+      columns: 3;
+      column-gap: 24px;
     }
 
-    .project {
-      cursor: pointer;
-    }
-
-    .placeholder {
+    .artwork {
+      display: block;
       width: 100%;
-      aspect-ratio: 4 / 3;
-      background: #f2f2f2;
+      margin: 0 0 24px;
+      break-inside: avoid;
+      cursor: zoom-in;
     }
 
-    .project:nth-child(3n) .placeholder {
-      aspect-ratio: 3 / 4;
+    .artwork img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
-    .project-info {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      margin-top: 12px;
+    .artwork:hover img {
+      opacity: 0.92;
+    }
+
+    /* ABOUT */
+
+    .about {
+      padding: 120px 28px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 50px;
+      border-top: 1px solid #eee;
+    }
+
+    .section-label {
       font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .status {
-      color: #777;
+    .about-text {
+      max-width: 700px;
+      font-size: clamp(22px, 3vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      padding: 120px 28px;
+      border-top: 1px solid #eee;
+    }
+
+    .contact p {
+      font-size: clamp(28px, 5vw, 64px);
+      margin: 30px 0 0;
+      letter-spacing: -0.035em;
+    }
+
+    .contact a {
+      color: inherit;
+    }
+
+    /* LIGHTBOX */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.97);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      z-index: 100;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 92vh;
+      object-fit: contain;
+    }
+
+    .close {
+      position: fixed;
+      top: 20px;
+      right: 25px;
+      font-size: 28px;
+      font-weight: 300;
+      cursor: pointer;
     }
 
     /* MOBILE */
 
-    @media (max-width: 700px) {
+    @media (max-width: 950px) {
+      .gallery {
+        columns: 2;
+      }
+    }
+
+    @media (max-width: 650px) {
       header {
-        padding: 22px 18px;
+        padding: 20px 16px;
       }
 
       nav {
-        gap: 15px;
+        gap: 14px;
       }
 
-      main {
-        padding: 35px 18px 70px;
+      nav a {
+        font-size: 10px;
+      }
+
+      .intro {
+        padding: 65px 16px 85px;
+      }
+
+      #work {
+        padding: 0 16px 80px;
       }
 
       .gallery {
+        columns: 1;
+      }
+
+      .artwork {
+        margin-bottom: 16px;
+      }
+
+      .about {
+        padding: 80px 16px;
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 30px;
+      }
+
+      .contact {
+        padding: 80px 16px;
       }
     }
   </style>
@@ -121,54 +234,156 @@
 <body>
 
   <header>
-    <a class="name" href="/">PAIGE WILSON</a>
+    <a class="name" href="#">PAIGE WILSON</a>
 
     <nav>
-      <a href="#">WORK</a>
-      <a href="#">ABOUT</a>
-      <a href="#">CONTACT</a>
+      <a href="#work">WORK</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
     </nav>
   </header>
 
-  <main>
+  <section class="intro">
+    <h1>Paige Wilson</h1>
+    <p>ARTIST</p>
+  </section>
 
+  <main id="work">
     <div class="gallery">
 
-      <div class="project">
-        <div class="placeholder"></div>
-        <div class="project-info">
-          <span>UNTITLED 01</span>
-          <span class="status">AVAILABLE</span>
-        </div>
+      <div class="artwork">
+        <img src="paigewilson-web-images/large-press-1.jpg" alt="Pressed botanical artwork">
       </div>
 
-      <div class="project">
-        <div class="placeholder"></div>
-        <div class="project-info">
-          <span>UNTITLED 02</span>
-          <span class="status">AVAILABLE</span>
-        </div>
+      <div class="artwork">
+        <img src="paigewilson-web-images/img-8713.jpg" alt="Artwork by Paige Wilson">
       </div>
 
-      <div class="project">
-        <div class="placeholder"></div>
-        <div class="project-info">
-          <span>UNTITLED 03</span>
-          <span class="status">SOLD</span>
-        </div>
+      <div class="artwork">
+        <img src="paigewilson-web-images/primary-colors.jpg" alt="Primary Colors artwork">
       </div>
 
-      <div class="project">
-        <div class="placeholder"></div>
-        <div class="project-info">
-          <span>UNTITLED 04</span>
-          <span class="status">AVAILABLE</span>
-        </div>
+      <div class="artwork">
+        <img src="paigewilson-web-images/med-press-1.jpg" alt="Pressed botanical artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/img-8703.jpg" alt="Artwork by Paige Wilson">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/small-1.jpg" alt="Botanical artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/lanscape.jpg" alt="Landscape artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/mini-press-1.jpg" alt="Pressed botanical artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/img-8714.jpg" alt="Artwork by Paige Wilson">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/flower-press.jpg" alt="Pressed flower artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/img-8708.jpg" alt="Artwork by Paige Wilson">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/small-2.jpg" alt="Botanical artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/med-press-2.jpg" alt="Pressed botanical artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/img-8715.jpg" alt="Artwork by Paige Wilson">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/mini-press-2.jpg" alt="Pressed botanical artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/small-3.jpg" alt="Botanical artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/img-8716.jpg" alt="Artwork by Paige Wilson">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/flower-press-large.jpg" alt="Pressed flower artwork">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/img-6849.jpg" alt="Artwork by Paige Wilson">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/img-8717.jpg" alt="Artwork by Paige Wilson">
+      </div>
+
+      <div class="artwork">
+        <img src="paigewilson-web-images/66499936642-28dea00c-9c9f-4381-83de-ac20cf505587.jpg" alt="Artwork by Paige Wilson">
       </div>
 
     </div>
-
   </main>
+
+  <section class="about" id="about">
+    <div class="section-label">About</div>
+
+    <div class="about-text">
+      Paige Wilson is a multidisciplinary artist working across painting,
+      botanical art, wood burning, assemblage, and mixed media.
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="section-label">Contact</div>
+
+    <p>
+      Available work, commissions<br>
+      &amp; inquiries
+    </p>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-image" src="" alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const artworks = document.querySelectorAll('.artwork img');
+
+    artworks.forEach(image => {
+      image.addEventListener('click', () => {
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        lightbox.classList.remove('open');
+      }
+    });
+  </script>
 
 </body>
 </html>
