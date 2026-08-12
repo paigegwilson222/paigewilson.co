@@ -110,14 +110,20 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 90px 42px;
+      grid-template-columns: repeat(auto-fit, 200px);
+      justify-content: center;
+      gap: 28px 24px;
       align-items: start;
     }
 
     .artwork {
+      position: relative;
       margin: 0;
+      width: 200px;
+      aspect-ratio: 1 / 1;
       cursor: zoom-in;
+      overflow: hidden;
+      background: #f4f1ec;
     }
 
     .artwork.hidden {
@@ -127,24 +133,46 @@
     .artwork img {
       display: block;
       width: 100%;
-      height: auto;
-    }
-
-    .artwork:nth-child(4n + 2),
-    .artwork:nth-child(4n + 3) {
-      width: 84%;
-    }
-
-    .artwork:nth-child(4n + 2) {
-      justify-self: end;
-    }
-
-    .artwork:nth-child(4n + 3) {
-      justify-self: start;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 180ms ease, opacity 180ms ease;
     }
 
     .artwork:hover img {
-      opacity: 0.94;
+      transform: scale(1.015);
+      opacity: 0.96;
+    }
+
+    .thumb-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 18px 14px 12px;
+      color: #fff;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.72) 0%,
+        rgba(0, 0, 0, 0.42) 52%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      pointer-events: none;
+    }
+
+    .thumb-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 4px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+      overflow-wrap: anywhere;
+    }
+
+    .thumb-more {
+      font-size: 0.73rem;
+      line-height: 1;
+      opacity: 0.92;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.35);
     }
 
     /* =========================
@@ -173,6 +201,79 @@
       font-size: clamp(24px, 3vw, 40px);
       line-height: 1.15;
       letter-spacing: -0.025em;
+    }
+
+    .contact-content {
+      max-width: 720px;
+    }
+
+    .contact-text {
+      margin-bottom: 34px;
+    }
+
+    .inquiry-form {
+      display: grid;
+      gap: 18px;
+      max-width: 720px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-field label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #bbb;
+      border-radius: 0;
+      background: #fff;
+      color: #111;
+      font: inherit;
+      font-size: 16px;
+      padding: 14px 15px;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: 2px solid #111;
+      outline-offset: 1px;
+    }
+
+    .form-field textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-field input[readonly] {
+      background: #f5f5f5;
+    }
+
+    .submit-inquiry {
+      justify-self: start;
+      border: 1px solid #111;
+      background: #111;
+      color: #fff;
+      padding: 14px 20px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .submit-inquiry:hover {
+      background: #fff;
+      color: #111;
     }
 
     /* =========================
@@ -332,14 +433,25 @@
       }
 
       .gallery {
-        grid-template-columns: 1fr;
-        gap: 44px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
 
-      .artwork,
-      .artwork:nth-child(4n + 2),
-      .artwork:nth-child(4n + 3) {
+      .artwork {
         width: 100%;
+        aspect-ratio: 1 / 1;
+      }
+
+      .thumb-overlay {
+        padding: 16px 10px 9px;
+      }
+
+      .thumb-title {
+        font-size: 0.78rem;
+      }
+
+      .thumb-more {
+        font-size: 0.66rem;
       }
 
       .about,
@@ -1668,8 +1780,70 @@
       Contact
     </div>
 
-    <div class="contact-text">
-      Available work, commissions and inquiries.
+    <div class="contact-content">
+
+      <div class="contact-text">
+        Available work, commissions and inquiries.
+      </div>
+
+      <form
+        class="inquiry-form"
+        id="inquiry-form"
+        action="https://formspree.io/f/mqpzbqra"
+        method="POST">
+
+        <div class="form-field">
+          <label for="inquiry-name">Name</label>
+          <input
+            id="inquiry-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required>
+        </div>
+
+        <div class="form-field">
+          <label for="inquiry-email">Email</label>
+          <input
+            id="inquiry-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required>
+        </div>
+
+        <div class="form-field">
+          <label for="inquiry-artwork">Artwork</label>
+          <input
+            id="inquiry-artwork"
+            name="artwork"
+            type="text"
+            readonly>
+        </div>
+
+        <div class="form-field">
+          <label for="inquiry-message">Message</label>
+          <textarea
+            id="inquiry-message"
+            name="message"
+            required
+            placeholder="Tell me what you’d like to know about this piece, or ask about commissions."></textarea>
+        </div>
+
+        <input
+          type="hidden"
+          name="_subject"
+          id="inquiry-subject"
+          value="New artwork inquiry">
+
+        <button
+          class="submit-inquiry"
+          type="submit">
+          Send inquiry
+        </button>
+
+      </form>
+
     </div>
 
   </section>
@@ -1789,7 +1963,8 @@
 
         <a
           class="inquire"
-          href="#contact">
+          href="#contact"
+          id="inquire-link">
           Inquire about this piece
         </a>
 
@@ -1897,6 +2072,35 @@
 
       const image =
         artwork.querySelector('img');
+
+      // Build the thumbnail title directly from the image filename,
+      // removing only the file extension.
+      const rawFileName =
+        image.getAttribute('src').split('/').pop() || '';
+
+      const fileTitle =
+        rawFileName.replace(/\.[^.]+$/, '');
+
+      const overlay =
+        document.createElement('div');
+
+      overlay.className = 'thumb-overlay';
+
+      const thumbTitle =
+        document.createElement('div');
+
+      thumbTitle.className = 'thumb-title';
+      thumbTitle.textContent = fileTitle;
+
+      const thumbMore =
+        document.createElement('div');
+
+      thumbMore.className = 'thumb-more';
+      thumbMore.textContent = 'See more';
+
+      overlay.appendChild(thumbTitle);
+      overlay.appendChild(thumbMore);
+      artwork.appendChild(overlay);
 
 
       artwork.addEventListener('click', () => {
@@ -2010,10 +2214,56 @@
     );
 
 
-    const inquireLink = document.querySelector('.inquire');
+    const inquireLink =
+      document.getElementById('inquire-link');
 
-    inquireLink.addEventListener('click', () => {
+    const inquiryArtwork =
+      document.getElementById('inquiry-artwork');
+
+    const inquirySubject =
+      document.getElementById('inquiry-subject');
+
+    const inquiryMessage =
+      document.getElementById('inquiry-message');
+
+
+    inquireLink.addEventListener('click', event => {
+
+      event.preventDefault();
+
+      const artworkTitle =
+        detailTitle.textContent.trim();
+
+      inquiryArtwork.value = artworkTitle;
+
+      inquirySubject.value =
+        artworkTitle
+          ? `Artwork inquiry: ${artworkTitle}`
+          : 'New artwork inquiry';
+
+      if (
+        artworkTitle &&
+        inquiryMessage.value.trim() === ''
+      ) {
+        inquiryMessage.placeholder =
+          `I’m interested in “${artworkTitle}.”`;
+      }
+
       closePreview();
+
+      document
+        .getElementById('contact')
+        .scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+
+      window.setTimeout(() => {
+        document
+          .getElementById('inquiry-name')
+          .focus();
+      }, 550);
+
     });
 
   </script>
